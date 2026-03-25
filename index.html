@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMIÈRE PETS - 프리미엄 강아지 분양</title>
+
+  <!-- 웹 폰트 (Noto Sans / Noto Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (CDN 연동) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+            serif: ['"Noto Serif KR"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons (CDN 연동) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS 애니메이션 및 스크롤바 숨김 설정 -->
+  <style>
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .snap-x { scroll-snap-type: x mandatory; }
+    .snap-start { scroll-snap-align: start; }
+  </style>
+</head>
+<body class="bg-stone-50 font-sans text-stone-800 antialiased">
+
+  <!-- 공통 상단 네비게이션 바 -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center">
+        <!-- Logo -->
+        <div id="logo-btn" class="text-2xl font-serif font-bold tracking-tighter cursor-pointer relative z-[60] text-stone-900 lg:text-white transition-colors" onclick="goHome()">
+          LUMIÈRE<span class="text-stone-400 text-lg ml-1">PETS</span>
+        </div>
+        
+        <!-- PC 메뉴 -->
+        <div id="desktop-menu" class="hidden md:flex space-x-10 text-sm font-medium tracking-wide text-stone-800 lg:text-white/90 transition-colors">
+          <button onclick="goHome()" class="hover:text-stone-400 transition-colors">분양중인 아이들</button>
+          <a href="#" class="hover:text-stone-400 transition-colors">프리미엄 혜택</a>
+          <a href="#" class="hover:text-stone-400 transition-colors">리얼 후기</a>
+          <a href="#" class="hover:text-stone-400 transition-colors">매장 찾기</a>
+        </div>
+
+        <!-- PC 우측 버튼 -->
+        <div class="hidden md:flex items-center space-x-4">
+          <button id="search-btn" class="p-2 rounded-full hover:bg-stone-100 transition-colors text-stone-800 lg:text-white">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <button class="bg-stone-900 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-stone-800 transition-all shadow-lg flex items-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4"></i> 상담 예약
+          </button>
+        </div>
+
+        <!-- 모바일 햄버거 메뉴 버튼 -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 z-[60] relative transition-colors text-stone-900 lg:text-white" onclick="toggleMobileMenu()">
+          <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 모바일 풀스크린 메뉴 오버레이 -->
+    <div id="mobile-menu-overlay" class="md:hidden fixed inset-0 bg-white/95 backdrop-blur-md z-50 transition-all duration-400 ease-in-out opacity-0 invisible">
+      <div id="mobile-menu-content" class="flex flex-col h-full pt-28 px-8 pb-12 transition-transform duration-500 delay-100 translate-y-8">
+        <div class="flex flex-col space-y-8 text-2xl font-serif text-stone-800 flex-grow">
+          <button onclick="goHome(); toggleMobileMenu();" class="text-left hover:text-stone-500 transition-colors">분양중인 아이들</button>
+          <a href="#" class="hover:text-stone-500 transition-colors">프리미엄 혜택</a>
+          <a href="#" class="hover:text-stone-500 transition-colors">리얼 후기</a>
+          <a href="#" class="hover:text-stone-500 transition-colors">매장 찾기</a>
+        </div>
+        <button class="bg-stone-900 text-white px-4 py-5 rounded-2xl w-full text-center font-medium text-lg mt-auto shadow-xl flex items-center justify-center gap-2">
+          <i data-lucide="phone" class="w-5 h-5"></i> 상담 예약하기
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 1. 리스트 메인 화면 -->
+  <div id="home-view">
+    <!-- 메인 비주얼 (Hero) -->
+    <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 w-full h-full">
+        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=2000" alt="Premium Dogs" class="w-full h-full object-cover object-center" />
+        <div class="absolute inset-0 bg-stone-900/40 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-50 via-transparent to-transparent opacity-90"></div>
+      </div>
+      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+        <span class="block text-white/80 text-sm md:text-base tracking-[0.3em] uppercase mb-4 font-medium animate-fade-in-up">Premium Pet Boutique</span>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-tight mb-6 animate-fade-in-up drop-shadow-lg">당신의 삶을 완벽하게 해줄<br /><span class="italic font-light">단 하나의 인연</span></h1>
+        <p class="text-stone-100 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto drop-shadow-md">상위 1% 혈통, 수의사 건강검진 완료. <br class="hidden md:block"/>루미에르 펫에서 평생의 반려가족을 만나보세요.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="w-full sm:w-auto px-8 py-4 bg-white text-stone-900 rounded-full font-medium hover:bg-stone-100 transition-all shadow-xl hover:-translate-y-1" onclick="document.getElementById('list-section').scrollIntoView({behavior:'smooth'})">가족 찾아보기</button>
+          <button class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/50 text-white rounded-full font-medium hover:bg-white/10 transition-all backdrop-blur-sm">프리미엄 혜택 보기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 견종 필터 섹션 -->
+    <section id="list-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-10 relative z-20">
+      <div class="bg-white rounded-2xl shadow-xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div id="breed-filters" class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+          <!-- JS로 자동 생성됨 -->
+        </div>
+        <div class="w-full md:w-auto flex justify-end">
+          <div class="relative w-full md:w-64">
+            <input type="text" placeholder="견종 또는 이름 검색" class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 focus:border-transparent transition-shadow" />
+            <i data-lucide="search" class="absolute left-3 top-2.5 text-stone-400 w-[18px] h-[18px]"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 강아지 리스트 그리드 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <h2 class="text-3xl font-serif text-stone-900 mb-2">사랑스러운 아이들</h2>
+          <p class="text-stone-500">실시간으로 업데이트되는 가족들을 만나보세요.</p>
+        </div>
+      </div>
+      <div id="puppy-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- JS로 자동 생성됨 -->
+      </div>
+    </section>
+
+    <!-- 브랜드 약속 섹션 -->
+    <section class="bg-stone-900 text-white py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-stone-400 text-sm tracking-widest uppercase mb-4 block">Our Promise</span>
+          <h2 class="text-3xl md:text-4xl font-serif mb-6">루미에르 펫만의 특별한 약속</h2>
+          <p class="text-stone-300 font-light">단순한 분양이 아닌, 새로운 가족을 맞이하는 모든 순간을 함께합니다.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div class="text-center group">
+            <div class="w-20 h-20 mx-auto bg-stone-800 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white group-hover:text-stone-900 transition-colors duration-300">
+              <i data-lucide="shield-check" class="w-10 h-10 text-stone-300 group-hover:text-stone-900 transition-colors"></i>
+            </div>
+            <h3 class="text-xl font-medium mb-3">1년 건강 보증제</h3>
+            <p class="text-stone-400 font-light leading-relaxed">기본 15일 보증을 넘어, 유전병 및 중대 질병에 대해 1년간 책임 보증을 실시합니다.</p>
+          </div>
+          <div class="text-center group">
+            <div class="w-20 h-20 mx-auto bg-stone-800 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white group-hover:text-stone-900 transition-colors duration-300">
+              <i data-lucide="heart" class="w-10 h-10 text-stone-300 group-hover:text-stone-900 transition-colors"></i>
+            </div>
+            <h3 class="text-xl font-medium mb-3">연계 병원 평생 할인</h3>
+            <p class="text-stone-400 font-light leading-relaxed">전국 50여 개 전문 동물병원과 제휴하여 접종, 수술 등 의료비를 평생 지원해 드립니다.</p>
+          </div>
+          <div class="text-center group">
+            <div class="w-20 h-20 mx-auto bg-stone-800 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white group-hover:text-stone-900 transition-colors duration-300">
+              <i data-lucide="map-pin" class="w-10 h-10 text-stone-300 group-hover:text-stone-900 transition-colors"></i>
+            </div>
+            <h3 class="text-xl font-medium mb-3">프리미엄 홈 딜리버리</h3>
+            <p class="text-stone-400 font-light leading-relaxed">전문 매니저가 전용 차량으로 전국 어디든 스트레스 없이 안전하게 아이를 데려다 드립니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 2. 상세 페이지 화면 (초기 숨김) -->
+  <div id="detail-view" class="hidden min-h-screen">
+    <main class="pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="detail-content">
+        <!-- JS로 자동 생성됨 -->
+      </div>
+    </main>
+    <section class="bg-stone-900 text-white py-16 text-center">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-2xl font-serif mb-4">가족을 맞이하는 첫 걸음</h2>
+        <p class="text-stone-400 font-light leading-relaxed mb-8">루미에르 펫은 엄격한 기준을 통과한 건강하고 예쁜 아이들만 소개해 드립니다.<br/>직접 매장에 방문하셔서 아이들과 교감해 보세요.</p>
+        <button class="px-8 py-3 border border-white/30 rounded-full font-medium hover:bg-white hover:text-stone-900 transition-colors">매장 방문 예약하기</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- 공통 푸터 -->
+  <footer class="bg-stone-50 pt-16 pb-8 border-t border-stone-200">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+       <p class="text-sm text-stone-400 font-light">© 2026 LUMIÈRE PETS. All rights reserved.</p>
+     </div>
+  </footer>
+
+  <!-- 자바스크립트 로직 (기능 동작) -->
+  <script>
+    // 1. 강아지 목업 데이터
+    const PUPPIES = [
+      {
+        id: 1, name: '루이', breed: '포메라니안', gender: '왕자님', age: '2개월', birthDate: '2025. 12. 15', vaccination: '종합백신 2차, 코로나 2차 완료', weight: '0.58kg (성견 시 1.5kg 이하 예상)', color: '크림 쉐이드', tags: ['상위 1% 미모', '모량 폭발', '짧은 머즐'], price: '상담문의', imageUrl: 'https://images.unsplash.com/photo-1605897472359-85e4b94d685d?auto=format&fit=crop&q=80&w=800', gallery: ['https://images.unsplash.com/photo-1605897472359-85e4b94d685d?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&q=80&w=800'], description: '구름을 닮은 풍성한 모량과 짧은 체장, 완벽한 사과 두상을 가진 포메라니안 "루이"입니다. 걸어 다닐 때마다 솜사탕이 굴러가는 듯한 사랑스러운 워킹을 자랑합니다. 성격 또한 매우 온순하고 사람과 교감하는 것을 좋아하여, 첫 반려견을 맞이하시는 가족에게도 적극 추천해 드리는 상위 1% 프리미엄 자견입니다.', isPremium: true,
+      },
+      {
+        id: 2, name: '샤넬', breed: '말티푸', gender: '공주님', age: '2.5개월', birthDate: '2025. 12. 01', vaccination: '종합백신 3차 완료', weight: '0.65kg (성견 시 2kg 초반 예상)', color: '라이트 애프리', tags: ['크림 모색', '애교만점', 'F1 세대'], price: '상담문의', imageUrl: 'https://images.unsplash.com/photo-1537151608804-ea6fac25d471?auto=format&fit=crop&q=80&w=800', gallery: ['https://images.unsplash.com/photo-1537151608804-ea6fac25d471?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&q=80&w=800'], description: '눈을 뗄 수 없는 맑고 큰 눈망울을 가진 말티푸 "샤넬"입니다. 털 빠짐이 거의 없고 영리하여 실내에서 키우기 가장 완벽한 견종입니다. 특히 샤넬이는 보기 드문 연한 라이트 애프리 모색을 지니고 있어 성견이 되었을 때 더욱 우아한 자태를 뽐낼 것입니다.', isPremium: false,
+      },
+      {
+        id: 3, name: '구찌', breed: '비숑 프리제', gender: '왕자님', age: '2개월', birthDate: '2025. 12. 20', vaccination: '종합백신 2차 완료', weight: '0.7kg (미니 비숑)', color: '퓨어 화이트', tags: ['미니 비숑', '혈통서 보유', '모량 우수'], price: '상담문의', imageUrl: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=800', gallery: ['https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1554692911-38e555f002b8?auto=format&fit=crop&q=80&w=800'], description: '솜털처럼 새하얗고 곱슬거리는 모질이 예술적인 미니 비숑 "구찌"입니다. 14대 혈통을 자랑하는 우수한 유전자를 물려받아 골격 구성이 매우 반듯합니다. 명랑하고 쾌활한 성격으로 집안의 활력소가 되어줄 귀한 아이입니다.', isPremium: true,
+      },
+      { id: 4, name: '벨라', breed: '말티즈', gender: '공주님', age: '3개월', birthDate: '2025. 11. 10', tags: ['건강검진 완료', '초소형'], price: '상담문의', imageUrl: 'https://images.unsplash.com/photo-1517423568366-8b83523034fd?auto=format&fit=crop&q=80&w=800', gallery: ['https://images.unsplash.com/photo-1517423568366-8b83523034fd?auto=format&fit=crop&q=80&w=800'], description: '사랑스러운 벨라입니다.', vaccination: '종합백신 3차 완료', weight: '1kg', color: '화이트', isPremium: false },
+      { id: 5, name: '코코', breed: '토이 푸들', gender: '왕자님', age: '2개월', birthDate: '2025. 12. 25', tags: ['레드 모색', '똑똑함'], price: '상담문의', imageUrl: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800', gallery: ['https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800'], description: '똑똑한 코코입니다.', vaccination: '종합백신 2차 완료', weight: '0.8kg', color: '레드', isPremium: false },
+      { id: 6, name: '에르', breed: '포메라니안', gender: '공주님', age: '2.5개월', birthDate: '2025. 12. 05', tags: ['화이트 폼', '티컵 사이즈'], price: '상담문의', imageUrl: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&q=80&w=800', gallery: ['https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&q=80&w=800'], description: '우아한 에르입니다.', vaccination: '종합백신 3차 완료', weight: '0.5kg', color: '화이트', isPremium: true }
+    ];
+    const BREEDS = ['전체', '포메라니안', '말티푸', '비숑 프리제', '말티즈', '토이 푸들'];
+
+    // 2. 상태 관리 (State)
+    let state = {
+      breed: '전체',
+      puppyId: null,
+      imgIdx: 0,
+      mobileMenuOpen: false
+    };
+
+    // 3. 페이지 로드 시 초기화
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBreedFilters();
+      renderPuppies();
+      setupScrollListener();
+      updateNavbarStyle(); 
+      lucide.createIcons(); // 아이콘 렌더링
+    });
+
+    // 4. 필터 렌더링
+    function renderBreedFilters() {
+      const container = document.getElementById('breed-filters');
+      container.innerHTML = BREEDS.map(breed => `
+        <button onclick="setBreed('${breed}')" class="whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+          state.breed === breed ? 'bg-stone-900 text-white shadow-md' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+        }">${breed}</button>
+      `).join('');
+    }
+
+    function setBreed(breed) {
+      state.breed = breed;
+      renderBreedFilters();
+      renderPuppies();
+    }
+
+    // 5. 강아지 리스트 렌더링
+    function renderPuppies() {
+      const container = document.getElementById('puppy-grid');
+      const filtered = state.breed === '전체' ? PUPPIES : PUPPIES.filter(p => p.breed === state.breed);
+      
+      container.innerHTML = filtered.map(puppy => `
+        <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-stone-100 flex flex-col cursor-pointer" onclick="viewDetail(${puppy.id})">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="${puppy.imageUrl}" alt="${puppy.breed}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            ${puppy.isPremium ? `<div class="absolute top-4 left-4 bg-stone-900/80 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full font-medium tracking-wide flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-yellow-400" fill="currentColor"></i> PREMIUM</div>` : ''}
+            <button class="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm text-stone-400 hover:text-red-500 rounded-full transition-colors opacity-0 group-hover:opacity-100" onclick="event.stopPropagation()"><i data-lucide="heart" class="w-5 h-5"></i></button>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <span class="text-xs font-semibold text-stone-400 tracking-wider mb-1 block">${puppy.breed}</span>
+                <h3 class="text-xl font-medium text-stone-900 flex items-center gap-2">${puppy.name}<span class="text-sm font-normal text-stone-500 bg-stone-100 px-2 py-0.5 rounded-md">${puppy.gender}</span></h3>
+              </div>
+              <div class="text-right">
+                <span class="text-sm text-stone-500 block mb-1">${puppy.age}</span>
+                <span class="font-medium text-stone-900">${puppy.price}</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+              ${puppy.tags.map(tag => `<span class="text-xs bg-stone-50 border border-stone-100 text-stone-600 px-3 py-1 rounded-full">#${tag}</span>`).join('')}
+            </div>
+            <button class="mt-auto w-full py-3 border border-stone-200 rounded-xl text-stone-700 font-medium hover:bg-stone-900 hover:text-white hover:border-stone-900 transition-colors">자세히 보기</button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // 6. 화면 전환 로직 (리스트 <-> 상세)
+    function viewDetail(id) {
+      state.puppyId = id;
+      state.imgIdx = 0;
+      document.getElementById('home-view').classList.add('hidden');
+      document.getElementById('detail-view').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateNavbarStyle();
+      renderDetailContent();
+    }
+
+    function goHome() {
+      state.puppyId = null;
+      document.getElementById('home-view').classList.remove('hidden');
+      document.getElementById('detail-view').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      updateNavbarStyle();
+    }
+
+    // 7. 상세페이지 갤러리 이미지 변경
+    function changeImg(idx) {
+      state.imgIdx = idx;
+      renderDetailContent();
+    }
+
+    // 8. 상세 페이지 렌더링
+    function renderDetailContent() {
+      const p = PUPPIES.find(x => x.id === state.puppyId);
+      if (!p) return;
+      const container = document.getElementById('detail-content');
+
+      const thumbnailsHTML = p.gallery.map((img, idx) => `
+        <button onclick="changeImg(${idx})" class="relative w-20 h-20 md:w-24 md:h-24 flex-shrink-0 rounded-2xl overflow-hidden border-2 transition-all snap-start ${state.imgIdx === idx ? 'border-stone-900 opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}">
+          <img src="${img}" class="w-full h-full object-cover" />
+        </button>
+      `).join('');
+
+      container.innerHTML = `
+        <div class="mb-8">
+          <button onclick="goHome()" class="inline-flex items-center text-sm font-medium text-stone-500 hover:text-stone-900 transition-colors group">
+            <i data-lucide="chevron-left" class="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform"></i> 리스트로 돌아가기
+          </button>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          <div class="space-y-4 animate-fade-in-up">
+            <div class="relative aspect-[4/5] md:aspect-square w-full rounded-3xl overflow-hidden bg-stone-100 shadow-md">
+              <img src="${p.gallery[state.imgIdx]}" class="w-full h-full object-cover" />
+              ${p.isPremium ? `<div class="absolute top-6 left-6 bg-stone-900/90 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium tracking-wider flex items-center gap-2 shadow-lg"><i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400" fill="currentColor"></i> PREMIUM CLASS</div>` : ''}
+              <button class="absolute top-6 right-6 p-3 bg-white/90 backdrop-blur-md text-stone-400 hover:text-red-500 rounded-full transition-colors shadow-sm"><i data-lucide="heart" class="w-6 h-6"></i></button>
+            </div>
+            <div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory">${thumbnailsHTML}</div>
+          </div>
+
+          <div class="flex flex-col animate-fade-in-up" style="animation-delay: 0.1s">
+            <div class="mb-8 border-b border-stone-200 pb-8">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-sm font-semibold text-stone-500 tracking-widest uppercase">${p.breed}</span>
+                <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium">${p.gender}</span>
+              </div>
+              <h1 class="text-4xl md:text-5xl font-serif text-stone-900 mb-4 tracking-tight">${p.name}</h1>
+              <div class="flex flex-wrap gap-2 mb-6">
+                ${p.tags.map(tag => `<span class="text-sm bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full">#${tag}</span>`).join('')}
+              </div>
+              <div class="text-2xl font-light text-stone-900">${p.price}</div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-stone-100 mb-8">
+              <h3 class="text-lg font-serif mb-6 flex items-center gap-2 text-stone-900"><i data-lucide="info" class="w-5 h-5 text-stone-400"></i> 상세 프로필</h3>
+              <div class="grid grid-cols-2 gap-y-6 gap-x-8 text-sm">
+                <div><span class="block text-stone-400 mb-1">견종</span><span class="font-medium text-stone-900">${p.breed}</span></div>
+                <div><span class="block text-stone-400 mb-1">성별</span><span class="font-medium text-stone-900">${p.gender}</span></div>
+                <div><span class="block text-stone-400 mb-1">생년월일 (나이)</span><span class="font-medium text-stone-900">${p.birthDate} (${p.age})</span></div>
+                <div><span class="block text-stone-400 mb-1">모색</span><span class="font-medium text-stone-900">${p.color}</span></div>
+                <div class="col-span-2"><span class="block text-stone-400 mb-1">현재 체중 / 예상 체중</span><span class="font-medium text-stone-900">${p.weight}</span></div>
+                <div class="col-span-2"><span class="block text-stone-400 mb-1">접종 내역</span><span class="font-medium text-stone-900">${p.vaccination}</span></div>
+              </div>
+            </div>
+
+            <div class="mb-10 text-stone-600 leading-relaxed font-light text-sm md:text-base">${p.description}</div>
+
+            <!-- 모바일 하단 고정 액션바 -->
+            <div class="fixed bottom-0 left-0 w-full px-4 py-3 bg-white/95 backdrop-blur-md border-t border-stone-200 z-50 sm:static sm:bg-transparent sm:border-none sm:p-0 flex flex-row gap-3 mt-auto shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.1)] sm:shadow-none transition-all">
+              <button class="flex-[1.5] bg-stone-900 text-white py-3.5 sm:py-4 px-4 rounded-2xl font-medium text-[15px] sm:text-lg hover:bg-stone-800 transition-all flex items-center justify-center gap-2 shadow-lg hover:-translate-y-1">
+                <i data-lucide="phone" class="w-[18px] h-[18px] sm:hidden"></i><i data-lucide="phone" class="w-5 h-5 hidden sm:block"></i> 전화 상담
+              </button>
+              <button class="flex-1 bg-[#FEE500] text-[#191919] py-3.5 sm:py-4 px-4 rounded-2xl font-medium text-[15px] sm:text-lg hover:bg-[#F4DC00] transition-all flex items-center justify-center gap-2 shadow-md hover:-translate-y-1">
+                <i data-lucide="message-circle" class="w-[18px] h-[18px] sm:hidden"></i><i data-lucide="message-circle" class="w-5 h-5 hidden sm:block"></i> 카톡 문의
+              </button>
+            </div>
+
+            <!-- 신뢰 배지 -->
+            <div class="mt-8 pt-8 border-t border-stone-200 grid grid-cols-3 gap-2 sm:gap-4 text-center pb-24 sm:pb-0">
+              <div class="flex flex-col items-center"><i data-lucide="check-circle-2" class="w-6 h-6 text-stone-400 mb-2"></i><span class="text-[11px] sm:text-xs text-stone-500 font-medium">100% 건강보증</span></div>
+              <div class="flex flex-col items-center"><i data-lucide="check-circle-2" class="w-6 h-6 text-stone-400 mb-2"></i><span class="text-[11px] sm:text-xs text-stone-500 font-medium">혈통서 발급</span></div>
+              <div class="flex flex-col items-center"><i data-lucide="check-circle-2" class="w-6 h-6 text-stone-400 mb-2"></i><span class="text-[11px] sm:text-xs text-stone-500 font-medium">안심 배송</span></div>
+            </div>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // 9. 모바일 메뉴 토글
+    function toggleMobileMenu() {
+      state.mobileMenuOpen = !state.mobileMenuOpen;
+      const overlay = document.getElementById('mobile-menu-overlay');
+      const content = document.getElementById('mobile-menu-content');
+      const menuIcon = document.getElementById('menu-icon');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+
+      if (state.mobileMenuOpen) {
+        overlay.classList.remove('opacity-0', 'invisible');
+        overlay.classList.add('opacity-100', 'visible');
+        content.classList.remove('translate-y-8');
+        content.classList.add('translate-y-0');
+        menuIcon.setAttribute('data-lucide', 'x');
+        mobileBtn.classList.replace('lg:text-white', 'text-stone-900');
+        document.getElementById('logo-btn').classList.replace('lg:text-white', 'text-stone-900');
+      } else {
+        overlay.classList.remove('opacity-100', 'visible');
+        overlay.classList.add('opacity-0', 'invisible');
+        content.classList.remove('translate-y-0');
+        content.classList.add('translate-y-8');
+        menuIcon.setAttribute('data-lucide', 'menu');
+        updateNavbarStyle(); // 메뉴 닫힐 때 원래 스크롤 상태에 맞춰 복구
+      }
+      lucide.createIcons();
+    }
+
+    // 10. 스크롤 네비게이션바 디자인 변경 로직
+    function setupScrollListener() {
+      window.addEventListener('scroll', () => {
+        if (!state.mobileMenuOpen) updateNavbarStyle();
+      });
+    }
+
+    function updateNavbarStyle() {
+      const isScrolled = window.scrollY > 50 || state.puppyId !== null;
+      const nav = document.getElementById('navbar');
+      const logo = document.getElementById('logo-btn');
+      const menu = document.getElementById('desktop-menu');
+      const search = document.getElementById('search-btn');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+
+      if (isScrolled) {
+        nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+        nav.classList.remove('bg-transparent', 'py-6');
+        logo.classList.replace('lg:text-white', 'text-stone-900');
+        menu.classList.replace('lg:text-white/90', 'text-stone-800');
+        search.classList.replace('lg:text-white', 'text-stone-800');
+        mobileBtn.classList.replace('lg:text-white', 'text-stone-900');
+      } else {
+        nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
+        nav.classList.add('bg-transparent', 'py-6');
+        if (state.puppyId === null && !state.mobileMenuOpen) {
+          logo.classList.replace('text-stone-900', 'lg:text-white');
+          menu.classList.replace('text-stone-800', 'lg:text-white/90');
+          search.classList.replace('text-stone-800', 'lg:text-white');
+          mobileBtn.classList.replace('text-stone-900', 'lg:text-white');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
