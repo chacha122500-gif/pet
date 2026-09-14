@@ -5,7 +5,7 @@
     <meta name="naver-site-verification" content="35cfeacfcadabcfcb175397db6d980659083eb0c" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="오창애견샵, 오창애견용품, 오창강이지분양, 청주강아지분양, 이츠펫오창점, 오창애견미용실, 오창강아지">
+    <meta name="keywords" content="오창애견샵, 오창애견용품, 오창강이지분양, 청주강아지분양, 이츠펫오창점, 오창애견미용실, 오창강아지, 오창애견호텔, 오창애견미용">
     <title>미래지 힐링호텔 | MIRAEJI HEALING PET HOTEL</title>
     <meta name="description" content="청주 오창 프리미엄 애견호텔, 미래지 힐링호텔. 완벽한 휴식과 케어를 제공합니다.">
     
@@ -60,7 +60,7 @@
             transform: translateY(0);
         }
 
-        /* 클리닉 영상 참고: 이미지 부드러운 스케일 업 */
+        /* 이미지/비디오 스케일 호버 효과 */
         .img-scale-hover { overflow: hidden; }
         .img-scale-hover img, .img-scale-hover video { transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .img-scale-hover:hover img, .img-scale-hover:hover video { transform: scale(1.05); }
@@ -212,13 +212,12 @@
                 </div>
             </div>
             <div class="order-1 lg:order-2 img-scale-hover rounded-[40px] md:rounded-[60px] h-[50vh] lg:h-[70vh] w-full shadow-2xl shadow-[#A68966]/10 relative">
-                <!-- 고화질 화이트톤 반려견/호텔 메인 이미지 -->
                 <img src="https://github.com/chacha122500-gif/pet/blob/main/main0.png?raw=true" class="w-full h-full object-cover object-center" alt="미래지 힐링호텔 메인">
             </div>
         </div>
     </section>
 
-    <!-- 2. The First, The Best (Video Concept Text Section) -->
+    <!-- 2. The First, The Best Section -->
     <section class="py-24 md:py-32 bg-[#F5F2EB]">
         <div class="max-w-[1400px] mx-auto px-6 md:px-12 text-center">
             <h2 class="reveal text-3xl md:text-5xl font-light text-[#2D2926] tracking-tight leading-[1.4] break-keep">
@@ -231,7 +230,7 @@
         </div>
     </section>
 
-    <!-- 3. Facilities (Horizontal Scroll Cards like Clinic) -->
+    <!-- 3. Facilities (Horizontal Scroll Cards with ZigZag layout) -->
     <section id="facilities" class="py-32 bg-[#FAF8F5]">
         <div class="max-w-[1400px] mx-auto px-6 md:px-12 mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
             <div class="reveal">
@@ -246,100 +245,125 @@
         </div>
 
         <div id="facilities-wrapper" class="pl-6 md:pl-12 lg:pl-[calc((100vw-1400px)/2+48px)] overflow-x-auto no-scrollbar snap-x snap-mandatory pb-16 cursor-grab active:cursor-grabbing scroll-smooth">
-            <div class="flex gap-6 md:gap-8 w-max pr-6 md:pr-12">
-                <!-- 시설 1 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/03.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 1">
+            <div class="flex items-start gap-6 md:gap-8 w-max pr-6 md:pr-12 pb-12 md:pb-24 pt-4">
+                <!-- 시설 1: 프리미엄 라운지 -->
+                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[420px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50 flex flex-col">
+                    <div class="h-[250px] md:h-[300px] overflow-hidden relative img-scale-hover cursor-pointer" onclick="openSubPage('lounge')">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/03.jpg?raw=true" class="w-full h-full object-cover" alt="프리미엄 라운지">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
                     </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 01</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">프리미엄 라운지</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">아늑하고 청결한 환경에서 완벽한 휴식을 제공하는 최고급 공간입니다.</span><span class="en">A premium space offering perfect rest in a cozy and clean environment.</span></p>
-                    </div>
-                </div>
-                <!-- 시설 2 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50" style="transition-delay: 100ms;">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/02.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 2">
-                    </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 02</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">휴식 공간</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">예민한 아이들도 내 집처럼 편안하게 쉴 수 있는 프라이빗한 공간입니다.</span><span class="en">A private space where sensitive dogs can rest comfortably like home.</span></p>
+                    <div class="p-8 md:p-10 flex flex-col flex-1 justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 01</span>
+                            <h4 class="text-2xl font-black text-[#2D2926] mb-4">프리미엄 라운지</h4>
+                            <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep line-clamp-2"><span class="ko">아이들이 호텔에 적응하고 보호자와 편안하게 인사할 수 있는 첫 번째 웰컴 공간입니다.</span><span class="en">A premium welcome space for pets to adapt and comfortably greet their guardians.</span></p>
+                        </div>
+                        <button onclick="openSubPage('lounge')" class="mt-8 flex items-center gap-2 text-sm font-bold text-[#2D2926] group-hover:text-[#A68966] transition-colors w-max">
+                            <span class="ko">자세히 보기</span><span class="en">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- 시설 3 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50" style="transition-delay: 200ms;">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/04.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 3">
+
+                <!-- 시설 2: 휴식공간 (지그재그 배치) -->
+                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[420px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50 flex flex-col mt-12 md:mt-24" style="transition-delay: 100ms;">
+                    <div class="h-[250px] md:h-[300px] overflow-hidden relative img-scale-hover cursor-pointer" onclick="openSubPage('rest')">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/02.jpg?raw=true" class="w-full h-full object-cover" alt="휴식공간">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
                     </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 03</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">놀이 및 활동</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">안전하게 설계된 실내 놀이터에서 매일 즐거운 시간을 보냅니다.</span><span class="en">Spend a joyful time every day in our safely designed indoor playground.</span></p>
-                    </div>
-                </div>
-                <!-- 시설 4 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50" style="transition-delay: 300ms;">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/05.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 4">
-                    </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 04</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">쾌적한 실내</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">24시간 적정 온습도가 유지되는 쾌적하고 안전한 활동 구역입니다.</span><span class="en">A pleasant and safe activity space maintaining optimal temperature 24/7.</span></p>
+                    <div class="p-8 md:p-10 flex flex-col flex-1 justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 02</span>
+                            <h4 class="text-2xl font-black text-[#2D2926] mb-4">휴식 공간</h4>
+                            <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep line-clamp-2"><span class="ko">예민한 아이들도 스트레스 없이 깊은 잠에 들 수 있도록 설계된 안락한 프라이빗 객실입니다.</span><span class="en">A cozy private room designed for even sensitive pets to sleep deeply without stress.</span></p>
+                        </div>
+                        <button onclick="openSubPage('rest')" class="mt-8 flex items-center gap-2 text-sm font-bold text-[#2D2926] group-hover:text-[#A68966] transition-colors w-max">
+                            <span class="ko">자세히 보기</span><span class="en">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- 시설 5 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/06.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 5">
+
+                <!-- 시설 3: 놀이 및 활동 -->
+                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[420px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50 flex flex-col" style="transition-delay: 200ms;">
+                    <div class="h-[250px] md:h-[300px] overflow-hidden relative img-scale-hover cursor-pointer" onclick="openSubPage('play')">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/04.jpg?raw=true" class="w-full h-full object-cover" alt="놀이 및 활동">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
                     </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 05</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">위생 및 청결</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">철저한 소독과 환기로 아이들의 건강을 최우선으로 생각합니다.</span><span class="en">Area where pets' health is the top priority with thorough disinfection.</span></p>
-                    </div>
-                </div>
-                <!-- 시설 6 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/07.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 6">
-                    </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 06</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">맞춤형 케어</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">전문 관리자의 세심한 손길로 우리 아이의 컨디션에 맞춘 돌봄을 제공합니다.</span><span class="en">Personalized care tailored to your pet's condition by professionals.</span></p>
+                    <div class="p-8 md:p-10 flex flex-col flex-1 justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 03</span>
+                            <h4 class="text-2xl font-black text-[#2D2926] mb-4">놀이 및 활동</h4>
+                            <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep line-clamp-2"><span class="ko">친구들과 뛰어놀며 사회성을 기르고, 관리자와의 교감을 통해 활동량을 채우는 실내 플레이그라운드입니다.</span><span class="en">An indoor playground where pets build social skills and burn energy through active play.</span></p>
+                        </div>
+                        <button onclick="openSubPage('play')" class="mt-8 flex items-center gap-2 text-sm font-bold text-[#2D2926] group-hover:text-[#A68966] transition-colors w-max">
+                            <span class="ko">자세히 보기</span><span class="en">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- 시설 7 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/09.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 7">
+
+                <!-- 시설 4: 쾌적한 실내 (지그재그 배치) -->
+                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[420px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50 flex flex-col mt-12 md:mt-24" style="transition-delay: 300ms;">
+                    <div class="h-[250px] md:h-[300px] overflow-hidden relative img-scale-hover cursor-pointer" onclick="openSubPage('indoor')">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/05.jpg?raw=true" class="w-full h-full object-cover" alt="쾌적한 실내">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
                     </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 07</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">교감 프로그램</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">스트레스를 줄이고 정서적 안정감을 높이는 맞춤형 힐링 프로그램.</span><span class="en">A healing program to reduce stress and boost emotional stability.</span></p>
+                    <div class="p-8 md:p-10 flex flex-col flex-1 justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 04</span>
+                            <h4 class="text-2xl font-black text-[#2D2926] mb-4">쾌적한 실내</h4>
+                            <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep line-clamp-2"><span class="ko">24시간 철저한 온습도 조절과 최신 공기청정 시스템으로 냄새 없이 늘 상쾌한 실내 환경을 유지합니다.</span><span class="en">Maintains a fresh indoor environment 24/7 with strict temperature, humidity control and air purifiers.</span></p>
+                        </div>
+                        <button onclick="openSubPage('indoor')" class="mt-8 flex items-center gap-2 text-sm font-bold text-[#2D2926] group-hover:text-[#A68966] transition-colors w-max">
+                            <span class="ko">자세히 보기</span><span class="en">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
-                <!-- 시설 8 -->
-                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[450px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50">
-                    <div class="h-[300px] md:h-[400px] overflow-hidden relative img-scale-hover">
-                        <img src="https://github.com/chacha122500-gif/pet/blob/main/11.jpg?raw=true" class="w-full h-full object-cover" alt="Facility 8">
+
+                <!-- 시설 5: 맞춤형 케어 -->
+                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[420px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50 flex flex-col" style="transition-delay: 400ms;">
+                    <div class="h-[250px] md:h-[300px] overflow-hidden relative img-scale-hover cursor-pointer" onclick="openSubPage('care')">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/07.jpg?raw=true" class="w-full h-full object-cover" alt="맞춤형 케어">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
                     </div>
-                    <div class="p-8 md:p-10">
-                        <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 08</span>
-                        <h4 class="text-2xl font-black text-[#2D2926] mb-4">뷰티 존</h4>
-                        <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep"><span class="ko">트렌디한 스타일링과 피부 건강을 동시에 챙기는 프리미엄 뷰티 존.</span><span class="en">A premium grooming zone for trendy styling and healthy skin.</span></p>
+                    <div class="p-8 md:p-10 flex flex-col flex-1 justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 05</span>
+                            <h4 class="text-2xl font-black text-[#2D2926] mb-4">맞춤형 케어</h4>
+                            <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep line-clamp-2"><span class="ko">개별 성향과 건강 상태를 파악하여 밀착 케어하고, 보호자님께 1:1 안심 알림장을 꼼꼼히 전송해 드립니다.</span><span class="en">Provides close care based on individual personality and health, sending 1:1 daily reports to guardians.</span></p>
+                        </div>
+                        <button onclick="openSubPage('care')" class="mt-8 flex items-center gap-2 text-sm font-bold text-[#2D2926] group-hover:text-[#A68966] transition-colors w-max">
+                            <span class="ko">자세히 보기</span><span class="en">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 시설 6: 뷰티존 (지그재그 배치) -->
+                <div class="reveal snap-start shrink-0 w-[85vw] md:w-[420px] bg-white rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/5 border border-[#E6E0D8]/50 flex flex-col mt-12 md:mt-24" style="transition-delay: 500ms;">
+                    <div class="h-[250px] md:h-[300px] overflow-hidden relative img-scale-hover cursor-pointer" onclick="openSubPage('beauty')">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/11.jpg?raw=true" class="w-full h-full object-cover" alt="뷰티존">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                    </div>
+                    <div class="p-8 md:p-10 flex flex-col flex-1 justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-widest text-[#A68966] uppercase mb-3 block">Space 06</span>
+                            <h4 class="text-2xl font-black text-[#2D2926] mb-4">뷰티 존</h4>
+                            <p class="text-gray-500 text-sm font-medium leading-relaxed break-keep line-clamp-2"><span class="ko">호텔링 중에도 스트레스 없는 프리미엄 미용을 통해 아름다움과 피부 건강을 동시에 챙길 수 있습니다.</span><span class="en">A premium grooming zone where pets can maintain beauty and skin health safely during their stay.</span></p>
+                        </div>
+                        <button onclick="openSubPage('beauty')" class="mt-8 flex items-center gap-2 text-sm font-bold text-[#2D2926] group-hover:text-[#A68966] transition-colors w-max">
+                            <span class="ko">자세히 보기</span><span class="en">View Details</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Our Value (01, 02 Numbering Layout) -->
+    <!-- 4. Our Value Section -->
     <section id="value" class="value-section py-32 border-y border-[#E6E0D8] overflow-hidden">
         <div class="max-w-[1400px] mx-auto px-6 md:px-12">
             <div class="reveal mb-20 text-center md:text-left border-b border-[#A68966] pb-8 inline-block">
@@ -525,6 +549,150 @@
         </div>
     </section>
 
+    <!-- 서브페이지 (모달 오버레이) 모음 -->
+    <div id="subpages-container">
+        <!-- 1. 프리미엄 라운지 -->
+        <div id="subpage-lounge" data-lenis-prevent="true" class="fixed inset-0 z-[500] bg-white transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-y-auto no-scrollbar">
+            <button onclick="closeSubPage('lounge')" class="fixed top-6 right-6 md:top-10 md:right-12 z-50 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-[#2D2926]"></i>
+            </button>
+            <div class="w-full h-[50vh] md:h-[65vh] relative">
+                <img src="https://github.com/chacha122500-gif/pet/blob/main/03.jpg?raw=true" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-10 left-6 md:bottom-16 md:left-12 max-w-[1400px]">
+                    <span class="text-[#A68966] font-bold tracking-widest uppercase mb-3 block">Premium Lounge</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white">프리미엄 라운지</h2>
+                </div>
+            </div>
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 md:py-32">
+                <h3 class="text-3xl font-light text-[#2D2926] leading-relaxed mb-10 break-keep">아이들이 가장 먼저 마주하는 공간, <br><strong class="font-black">최고급 프리미엄 라운지</strong>입니다.</h3>
+                <p class="text-lg text-gray-500 leading-loose break-keep max-w-3xl">보호자님과 아이가 안정감을 느낄 수 있도록 따뜻하고 아늑한 인테리어로 꾸며져 있습니다. 낯선 환경에 대한 경계심을 허물고 편안하게 쉴 수 있는 완벽한 휴식 공간을 제공합니다.</p>
+                
+                <!-- 프리미엄 라운지 갤러리 (트렌디한 그리드 레이아웃, 지연 로딩 최적화) -->
+                <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+                    <!-- Row 1: 8칸 / 4칸 -->
+                    <div class="md:col-span-8 h-[60vw] md:h-[500px] rounded-[30px] md:rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/10">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/pr1.jpg?raw=true" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="프리미엄 라운지 전경 1">
+                    </div>
+                    <div class="md:col-span-4 h-[60vw] md:h-[500px] rounded-[30px] md:rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/10">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/pr2.jpg?raw=true" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="프리미엄 라운지 전경 2">
+                    </div>
+                    
+                    <!-- Row 2: 4칸 / 4칸 / 4칸 -->
+                    <div class="md:col-span-4 h-[60vw] md:h-[400px] rounded-[30px] md:rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/10">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/pr3.jpg?raw=true" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="프리미엄 라운지 전경 3">
+                    </div>
+                    <div class="md:col-span-4 h-[60vw] md:h-[400px] rounded-[30px] md:rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/10">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/pr4.jpg?raw=true" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="프리미엄 라운지 전경 4">
+                    </div>
+                    <div class="md:col-span-4 h-[60vw] md:h-[400px] rounded-[30px] md:rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/10">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/pr5.jpg?raw=true" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="프리미엄 라운지 전경 5">
+                    </div>
+
+                    <!-- Row 3: 전체 너비 -->
+                    <div class="md:col-span-12 h-[60vw] md:h-[600px] rounded-[30px] md:rounded-[40px] overflow-hidden group shadow-lg shadow-[#A68966]/10 mt-2 md:mt-4">
+                        <img src="https://github.com/chacha122500-gif/pet/blob/main/pr6.jpg?raw=true" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="프리미엄 라운지 전경 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 휴식공간 -->
+        <div id="subpage-rest" data-lenis-prevent="true" class="fixed inset-0 z-[500] bg-white transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-y-auto no-scrollbar">
+            <button onclick="closeSubPage('rest')" class="fixed top-6 right-6 md:top-10 md:right-12 z-50 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-[#2D2926]"></i>
+            </button>
+            <div class="w-full h-[50vh] md:h-[65vh] relative">
+                <img src="https://github.com/chacha122500-gif/pet/blob/main/02.jpg?raw=true" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-10 left-6 md:bottom-16 md:left-12 max-w-[1400px]">
+                    <span class="text-[#A68966] font-bold tracking-widest uppercase mb-3 block">Rest Area</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white">휴식 공간</h2>
+                </div>
+            </div>
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 md:py-32">
+                <h3 class="text-3xl font-light text-[#2D2926] leading-relaxed mb-10 break-keep">스트레스 제로, <br><strong class="font-black">오직 내 아이만을 위한 프라이빗룸</strong>.</h3>
+                <p class="text-lg text-gray-500 leading-loose break-keep max-w-3xl">청각과 후각이 예민한 아이들을 배려하여 독립적이고 조용한 환경을 구축했습니다. 넓은 공간에서 편안한 쿠션과 함께 내 집 같은 깊은 숙면을 취할 수 있습니다.</p>
+            </div>
+        </div>
+
+        <!-- 3. 놀이 및 활동 -->
+        <div id="subpage-play" data-lenis-prevent="true" class="fixed inset-0 z-[500] bg-white transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-y-auto no-scrollbar">
+            <button onclick="closeSubPage('play')" class="fixed top-6 right-6 md:top-10 md:right-12 z-50 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-[#2D2926]"></i>
+            </button>
+            <div class="w-full h-[50vh] md:h-[65vh] relative">
+                <img src="https://github.com/chacha122500-gif/pet/blob/main/04.jpg?raw=true" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-10 left-6 md:bottom-16 md:left-12 max-w-[1400px]">
+                    <span class="text-[#A68966] font-bold tracking-widest uppercase mb-3 block">Play & Activity</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white">놀이 및 활동</h2>
+                </div>
+            </div>
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 md:py-32">
+                <h3 class="text-3xl font-light text-[#2D2926] leading-relaxed mb-10 break-keep">매일 규칙적인 운동으로 <br><strong class="font-black">신체 리듬과 활력</strong>을 되찾습니다.</h3>
+                <p class="text-lg text-gray-500 leading-loose break-keep max-w-3xl">단순히 갇혀 지내는 호텔링이 아닙니다. 넓고 안전한 실내 플레이그라운드에서 친구들과 교감하며 사회성을 기르고 전문 관리자와의 즐거운 놀이를 통해 스트레스를 완벽히 해소합니다.</p>
+            </div>
+        </div>
+
+        <!-- 4. 쾌적한 실내 -->
+        <div id="subpage-indoor" data-lenis-prevent="true" class="fixed inset-0 z-[500] bg-white transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-y-auto no-scrollbar">
+            <button onclick="closeSubPage('indoor')" class="fixed top-6 right-6 md:top-10 md:right-12 z-50 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-[#2D2926]"></i>
+            </button>
+            <div class="w-full h-[50vh] md:h-[65vh] relative">
+                <img src="https://github.com/chacha122500-gif/pet/blob/main/05.jpg?raw=true" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-10 left-6 md:bottom-16 md:left-12 max-w-[1400px]">
+                    <span class="text-[#A68966] font-bold tracking-widest uppercase mb-3 block">Pleasant Indoor</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white">쾌적한 실내</h2>
+                </div>
+            </div>
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 md:py-32">
+                <h3 class="text-3xl font-light text-[#2D2926] leading-relaxed mb-10 break-keep">숨쉬는 것조차 안심할 수 있는 <br><strong class="font-black">최적의 환경 공조 시스템</strong>.</h3>
+                <p class="text-lg text-gray-500 leading-loose break-keep max-w-3xl">사계절 내내 외부 날씨에 구애받지 않도록 24시간 철저한 온습도 유지는 물론, 최신 공기청정 및 환기 시스템을 가동하여 반려동물 특유의 냄새 없이 늘 청결하고 상쾌한 공간을 유지합니다.</p>
+            </div>
+        </div>
+
+        <!-- 5. 맞춤형 케어 -->
+        <div id="subpage-care" data-lenis-prevent="true" class="fixed inset-0 z-[500] bg-white transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-y-auto no-scrollbar">
+            <button onclick="closeSubPage('care')" class="fixed top-6 right-6 md:top-10 md:right-12 z-50 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-[#2D2926]"></i>
+            </button>
+            <div class="w-full h-[50vh] md:h-[65vh] relative">
+                <img src="https://github.com/chacha122500-gif/pet/blob/main/07.jpg?raw=true" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-10 left-6 md:bottom-16 md:left-12 max-w-[1400px]">
+                    <span class="text-[#A68966] font-bold tracking-widest uppercase mb-3 block">Custom Care</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white">맞춤형 케어</h2>
+                </div>
+            </div>
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 md:py-32">
+                <h3 class="text-3xl font-light text-[#2D2926] leading-relaxed mb-10 break-keep">보호자님의 마음을 대신하여 <br><strong class="font-black">세심하게 관찰하고 밀착 케어</strong>합니다.</h3>
+                <p class="text-lg text-gray-500 leading-loose break-keep max-w-3xl">아이들마다 성향과 건강 상태가 모두 다릅니다. 투약 여부, 식습관, 알러지 등을 사전에 꼼꼼히 체크하여 맞춤 돌봄을 실시하며, 매일 배변 상태와 컨디션을 1:1 사진/영상 알림장으로 전송해 드립니다.</p>
+            </div>
+        </div>
+
+        <!-- 6. 뷰티존 -->
+        <div id="subpage-beauty" data-lenis-prevent="true" class="fixed inset-0 z-[500] bg-white transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-y-auto no-scrollbar">
+            <button onclick="closeSubPage('beauty')" class="fixed top-6 right-6 md:top-10 md:right-12 z-50 w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-[#2D2926]"></i>
+            </button>
+            <div class="w-full h-[50vh] md:h-[65vh] relative">
+                <img src="https://github.com/chacha122500-gif/pet/blob/main/11.jpg?raw=true" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-10 left-6 md:bottom-16 md:left-12 max-w-[1400px]">
+                    <span class="text-[#A68966] font-bold tracking-widest uppercase mb-3 block">Beauty Zone</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-white">뷰티 존</h2>
+                </div>
+            </div>
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-20 md:py-32">
+                <h3 class="text-3xl font-light text-[#2D2926] leading-relaxed mb-10 break-keep">호텔링과 미용을 한 번에, <br><strong class="font-black">스트레스 없는 프리미엄 스파 케어</strong>.</h3>
+                <p class="text-lg text-gray-500 leading-loose break-keep max-w-3xl">전문 애견 미용사가 아이들의 피부와 모질 상태를 파악하여 최적의 미용과 스파 서비스를 제공합니다. 트렌디한 스타일링은 물론, 피부 건강까지 꼼꼼하게 관리하는 안심 뷰티 공간입니다.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-[#2D2926] py-16 text-white text-center md:text-left">
         <div class="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
@@ -681,54 +849,6 @@
             
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-            // 메인 슬라이더 제어 (페이드 방식)
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.hero-slide');
-            const dots = document.querySelectorAll('.hero-dot');
-            const sliderContainer = document.getElementById('home');
-            let isDragging = false;
-            let startX = 0;
-            let currentX = 0;
-
-            function showSlide(index) {
-                if (slides.length === 0) return;
-                slides.forEach(s => s.classList.remove('active'));
-                dots.forEach(d => { d.classList.remove('w-8', 'bg-[#2D2926]'); d.classList.add('w-3', 'bg-[#E6E0D8]'); });
-                currentSlide = (index + slides.length) % slides.length;
-                slides[currentSlide].classList.add('active');
-                dots[currentSlide].classList.add('w-8', 'bg-[#2D2926]');
-                dots[currentSlide].classList.remove('w-3', 'bg-[#E6E0D8]');
-            }
-            let sliderInterval = setInterval(() => showSlide(currentSlide + 1), 6000);
-            window.goToSlide = (index) => { clearInterval(sliderInterval); showSlide(index); sliderInterval = setInterval(() => showSlide(currentSlide + 1), 6000); };
-
-            if (sliderContainer) {
-                sliderContainer.addEventListener('mousedown', (e) => { 
-                    isDragging = true; startX = e.clientX; clearInterval(sliderInterval); 
-                });
-                window.addEventListener('mousemove', (e) => { if (isDragging) currentX = e.clientX; });
-                window.addEventListener('mouseup', (e) => {
-                    if (!isDragging) return;
-                    const diff = startX - currentX;
-                    if (Math.abs(diff) > 50) { 
-                        if (diff > 0) showSlide(currentSlide + 1); 
-                        else showSlide(currentSlide - 1); 
-                    }
-                    isDragging = false;
-                    sliderInterval = setInterval(() => showSlide(currentSlide + 1), 6000);
-                });
-                sliderContainer.addEventListener('touchend', (e) => {
-                    if (!isDragging) return;
-                    const diff = startX - currentX;
-                    if (Math.abs(diff) > 50) { 
-                        if (diff > 0) showSlide(currentSlide + 1); 
-                        else showSlide(currentSlide - 1); 
-                    }
-                    isDragging = false;
-                    sliderInterval = setInterval(() => showSlide(currentSlide + 1), 6000);
-                });
-            }
-
             // 가로 스크롤 영역 마우스 드래그 앤 드롭 기능 (부드러운 스크롤 및 마우스 놓기 오류 완전 해결)
             function makeDraggable(wrapperId) {
                 const wrapper = document.getElementById(wrapperId);
@@ -819,7 +939,7 @@
             // 시설안내 좌우 화살표 버튼 제어
             const facPrev = document.getElementById('fac-prev');
             const facNext = document.getElementById('fac-next');
-            const facWrapper = document.getElementById('facilities-wrapper'); // Added this line
+            const facWrapper = document.getElementById('facilities-wrapper'); 
             
             if (facPrev && facWrapper) {
                 facPrev.addEventListener('click', () => {
@@ -832,19 +952,25 @@
                 });
             }
 
+            // 서브페이지 열기/닫기 로직 (부드러운 슬라이드 애니메이션)
             window.openSubPage = (id) => {
                 const sub = document.getElementById(`subpage-${id}`);
-                if (sub) { sub.classList.add('active'); document.body.style.overflow = 'hidden'; lenis.stop(); }
+                if (sub) { 
+                    sub.classList.remove('translate-y-full'); 
+                    sub.classList.add('translate-y-0'); 
+                    document.body.style.overflow = 'hidden'; 
+                    if(window.lenis) lenis.stop(); 
+                }
             };
             window.closeSubPage = (id) => {
                 const sub = document.getElementById(`subpage-${id}`);
-                if (sub) { sub.classList.remove('active'); document.body.style.overflow = ''; lenis.start(); }
+                if (sub) { 
+                    sub.classList.add('translate-y-full'); 
+                    sub.classList.remove('translate-y-0'); 
+                    document.body.style.overflow = ''; 
+                    if(window.lenis) lenis.start(); 
+                }
             };
-
-            const scrollTopBtn = document.getElementById('scrollTopBtn');
-            if (scrollTopBtn) {
-                scrollTopBtn.addEventListener('click', () => lenis.scrollTo(0, { duration: 1.5 }));
-            }
         });
     </script>
 </body>
